@@ -29,3 +29,4 @@ test('filter completed todos', async ({ page }) => {
     await expect(visibleTodos).toHaveCount(1);
 
 });
+

@@ -1,0 +1,12 @@
+import { test, expect } from "@playwright/test";
+
+test('test', async ({ page }) => {
+    await page.goto('https://demo.playwright.dev/todomvc');
+    await page.getByRole('textbox', { name: 'What needs to be done?' }).fill('Write Code');
+    await page.getByRole('textbox', { name: 'What needs to be done?' }).press('Enter');
+    await page.getByRole('textbox', { name: 'What needs to be done?' }).fill('Test App');
+    await page.getByRole('textbox', { name: 'What needs to be done?' }).press('Enter');
+    await page.getByRole('listitem').filter({ hasText: 'Write Code' }).getByLabel('Toggle Todo').check();
+    await expect(page.getByText('Write Code')).toBeVisible();
+    await expect(page.getByText('Test App')).toBeVisible();
+});
